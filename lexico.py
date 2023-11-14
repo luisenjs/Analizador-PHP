@@ -31,6 +31,10 @@ reservadas={
     "push" : "PUSH",
     "pop" : "POP",
     "echo": "ECHO",
+    "fgets" : "FGETS",
+    "readline" : "READLINE",
+    "fscanf" : "FSCANF",
+    "STDIN" : "STDIN",
 }
 
 #Luis Jara
@@ -146,11 +150,12 @@ def t_BOOLEANO(t):
   return t
 
 def t_IDENTIFICADOR(t):
-  r'[a-zA-Z_][a-zA-Z_0-9]*'
+  r'[a-zA-Z0-9_]?[a-zA-Z_0-9]+'
   t.type = reservadas.get(t.value.lower(),"IDENTIFICADOR")
   return t
 
 t_ignore = " \t"
+
 lexer = lex.lex()
 
 code4 = '''
@@ -234,9 +239,9 @@ echo "AND lógico: " . ($condicion_and ? 'true' : 'false') . "\n";
 BLOQUE COMENTARIO
 :D
 */
-'''
 
 lexer.input(code4)
 
 for token in lexer:
   print(token)
+'''
