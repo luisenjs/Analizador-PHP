@@ -4,9 +4,8 @@ import ply.lex as lex
 #Palabras reservadas
 reservadas={
     "and":"AND",
+    "as" : "AS",
     "array" : "ARRAY",
-    "break": "BREAK",
-    "callable": "CALLABLE",
     "class": "CLASS",
     "const": "CONST",
     "elseif": "ELSEIF",

@@ -1,13 +1,26 @@
 import ply.yacc as yacc
 from lexico import tokens
 
+def p_programa(p):
+  '''programa : clase
+              | instrucciones
+  '''
+
+def p_clase(p):
+  "clase : CLASS IDENTIFICADOR LLAVE_ABRE instrucciones LLAVE_CIERRA"
+
 def p_instrucciones(p):
   '''instrucciones : asignacion
             | valor
             | salida
             | ingreso
             | estructuras_datos
+            | estructuras_control
             | funcion
+            | COMENTARIO_LINEA
+            | COMENTARIO_BLOQUE
+            | operaciones_arit
+            | operaciones_bits
   '''
 
 # Stefany Farias
@@ -37,17 +50,29 @@ def p_ingreso_forma2(p):
 def p_ingreso_forma3(p):
   '''ingreso : FSCANF PARENTESIS_ABRE STDIN COMA CADENA COMA SIGNO_DOLAR IDENTIFICADOR PARENTESIS_CIERRA FIN_LINEA'''
 
+#Luis Jara
+#Privacidad de variables
+def p_variable_tipo(p):
+  '''variable_tipo : CONST
+                  | PRIVATE
+                  | PUBLIC
+                  | PROTECTED
+                  | STATIC
+                  | VAR
+  '''
+
 # Stefany Farias
 # 3.1 declaración de variables y funciones
 def p_decl_variable(p):
-  "decl_variable : SIGNO_DOLAR IDENTIFICADOR"
+  '''decl_variable : SIGNO_DOLAR IDENTIFICADOR
+                    | variable_tipo SIGNO_DOLAR IDENTIFICADOR'''
 
 def p_asignacion(p):
   '''asignacion : decl_variable IGUAL valor FIN_LINEA'''
 
 def p_valor(p):
   '''valor : datos
-
+            | NULO
   '''
 
 def p_datos(p):
@@ -127,6 +152,38 @@ def p_operad_logicos(p):
                 | OR
                 | XOR
   '''
+
+#Luis Jara
+#Operadores con bits
+def p_operad_bits(p):
+  '''operand_bits : CONJUNCION
+                  | DISYUNCION
+                  | DISYUNCION_EXC
+                  | DESPLAZAR_BITS_IZQ
+                  | DESPLAZAR_BITS_DER
+  '''
+
+#Luis Jara
+#Operaciones aritméticas, lógicas y con bits
+def p_operaciones_arit(p):
+  '''operaciones_arit : salidas_posibles operad_arit salidas_posibles
+                | salidas_posibles operad_arit operaciones_arit
+  '''
+
+def p_operaciones_bits(p):
+  '''operaciones_bits : salidas_posibles operand_bits salidas_posibles
+                  | NEGACION salidas_posibles
+  '''
+
+def p_operaciones_logica(p):
+  ''' operaciones_logicas : ENTERO operad_logico ENTERO
+                | FLOTANTE operad_logico FLOTANTE
+                | BOOLEANO
+                | decl_variable operad_logico decl_variable
+                | decl_variable operad_logico ENTERO
+                | decl_variable operad_logico FLOTANTE
+  '''
+
   
 #Stefany Farias
 #Condicionales simples y con conectores
@@ -181,7 +238,40 @@ def p_crecimiento(p):
 def p_retorno(p):
   ''' retorno : RETURN salidas_posibles FIN_LINEA'''
 
+# Luis Jara
+# Estructura de control foreach
+def p_foreach(p):
+  '''foreach : FOREACH PARENTESIS_ABRE decl_variable AS decl_variable PARENTESIS_CIERRA LLAVE_ABRE sentenciasAnidadas LLAVE_CIERRA
+              | FOREACH PARENTESIS_ABRE decl_variable AS decl_variable IGUAL MAYOR decl_variable PARENTESIS_CIERRA LLAVE_ABRE sentenciasAnidadas LLAVE_CIERRA
+  '''
 
+#Luis Jara
+#Estructura de control while
+def p_while(p):
+  "while : WHILE PARENTESIS_ABRE decl_variable operad_logico valor PARENTESIS_CIERRA LLAVE_ABRE instrucciones LLAVE_CIERRA"
+
+#Luis Jara
+#Estructura de control if-else
+def p_if_else_corto(p):
+  " if_else : if_else_inicio if_else_fin"
+
+#if-elseif-else
+def p_if_else_extendido(p):
+  " if_else : if_else_inicio if_else_cuerpo if_else_fin"
+
+#Bloque IF
+def p_if_else_inicio(p):
+  "if_else_inicio : IF PARENTESIS_ABRE operaciones_logicas PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA"
+
+#Bloque ELSEIF
+def p_if_else_cuerpo(p):
+  ''' if_else_cuerpo : ELSEIF PARENTESIS_ABRE operaciones_logicas PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA
+                    |  ELSEIF PARENTESIS_ABRE operaciones_logicas PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA if_else_cuerpo
+  '''
+
+#Bloque ELSE
+def p_if_else_fin(p):
+  "if_else_fin : ELSE LLAVE_ABRE bloque LLAVE_CIERRA"
 
 
 def p_error(p):
