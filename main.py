@@ -104,6 +104,86 @@ def p_elementos(p):
                   | datos COMA elementos
     '''
 
+#Stefany Farias
+def p_operad_aritmeticas(p):
+  '''operad_arit : SUMA
+                | RESTA
+                | MULTIPLICACION
+                | DIVISION
+                | POTENCIA
+                | MODULO
+  '''
+
+def p_operad_logicos(p):
+  '''operad_logico : IGUALDAD
+                | IDENTIDAD
+                | DIFERENTE
+                | NO_IDENTIDAD
+                | MAYOR
+                | MAYOR_IGUAL
+                | MENOR
+                | MENOR_IGUAL
+                | AND
+                | OR
+                | XOR
+  '''
+  
+#Stefany Farias
+#Condicionales simples y con conectores
+def p_estructuras_control(p):
+  ''' estructuras_control : for
+                          | foreach
+                          | if_else
+                          | while
+                          
+  '''
+
+#Bloques de código permitidos dentro de funciones o bucles
+def p_bloque(p):
+  ''' bloque : asignacion
+              | salida
+              | retorno
+              | estructuras_control
+  '''
+
+#Stefany Farias
+#Estructura de control for
+def p_for(p):
+   '''for : FOR PARENTESIS_ABRE asignacion declaracionp declaracion_s PARENTESIS_CIERRA LLAVE_ABRE sentenciasAnidadas LLAVE_CIERRA'''
+
+def p_sentenciasAnidadas(p):
+  '''sentenciasAnidadas : instrucciones 
+            | instrucciones sentenciasAnidadas
+  '''
+
+def p_declaracionM(p):
+   '''declaracionp :  decl_variable valorc'''
+
+def p_valorC(p):
+  ''' valorc : menor
+              | mayor'''
+
+def p_menor(p):
+  '''menor : MENOR_IGUAL ENTERO FIN_LINEA'''
+
+def p_mayor(p):
+  '''mayor : MAYOR_IGUAL ENTERO FIN_LINEA'''
+
+def p_declaracionsimple(p):
+   '''declaracion_s : decl_variable crecimiento
+                    | crecimiento decl_variable
+   '''
+
+def p_crecimiento(p):
+  '''crecimiento : INCREMENTO 
+                | DECREMENTO'''
+
+def p_retorno(p):
+  ''' retorno : RETURN salidas_posibles FIN_LINEA'''
+
+
+
+
 def p_error(p):
   if p:
     print("Error sintáctico, no se esperaba '%s'" % p.value)
