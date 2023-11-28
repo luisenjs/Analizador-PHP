@@ -39,6 +39,7 @@ reservadas={
 #Luis Jara
 #Tokens y expresiones
 tokens = (
+  "BACKSLASH",
   "SIGNO_DOLAR",
   "ENTERO",
   "FLOTANTE",
@@ -84,6 +85,7 @@ tokens = (
   "INTERROGANTE"
 )+tuple(reservadas.values())
 
+t_BACKSLASH = r'\\'
 t_SIGNO_DOLAR = r'\$'
 t_CADENA = r'".*?"|".*?\n.*?"|\'.*?\'|\'.*?\n.*?\''
 t_NULO = r'null'
@@ -244,3 +246,10 @@ lexer.input(code4)
 for token in lexer:
   print(token)
 '''
+
+def lexico(codigo):
+    lexer.input(codigo)
+    resultado = []
+    for token in lexer:
+        resultado.append(token)
+    return resultado
