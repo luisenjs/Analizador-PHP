@@ -1,95 +1,119 @@
 import tkinter as tk
-import lexico as lx
+from tkinter import *
+import tkinter.scrolledtext as st
 import sintactico as sn
+import lexico as lx
 
+from datetime import datetime 
+
+today = datetime.now()
+
+valorLexico= lx.lexer
+valorsintatico= sn.parser
+analizadorLexico=lx.obtener_validador_lexico()
+analizadorSintactico= sn.obtener_analizador_sintactico()
+
+logs_file = open ('logs.txt','w')
+
+
+## Root GUI
 root = tk.Tk()
 root.title("Analizador PHP")
 root.resizable(False, False)
-
-# Obtener el ancho y alto de la pantalla
 ancho_pantalla = root.winfo_screenwidth()
 alto_pantalla = root.winfo_screenheight()
 
-# Obtener el ancho y alto de la ventana
-ancho_ventana = 1100  # Ancho que estableciste para la ventana
-alto_ventana = 800  # Alto que estableciste para la ventana
+ancho_ventana = 1100 
+alto_ventana = 800 
 
-# Calcular la posición para centrar la ventana
-posicion_x = (ancho_pantalla - ancho_ventana) // 2
-posicion_y = (alto_pantalla - alto_ventana) // 2
+## Etiqueta Principal
+etiqueta = tk.Label(root, text="ANALIZADOR DE CÓDIGO PHP" , fg="#FFFFFF", bg='#FADF9D',  font=("Arial", 25) )
+etiqueta.grid(row = 0, column = 0, padx = 15, columnspan=2)
 
-# Establecer la posición de la ventana en el centro
-root.geometry(f"{ancho_ventana}x{alto_ventana}+{posicion_x-20}+{posicion_y-30}")
+##Etiqueta Ingreso
+mensaje_in = tk.Label(root, text="Ingrese su código aquí:" , bg='#FADF9D',  font=("Arial", 12))
+mensaje_in.grid(row = 1, column = 0, padx = 2)
 
-etiqueta = tk.Label(root, text="ANALIZADOR DE CÓDIGO PHP")
-etiqueta.pack(padx=10, pady=10)
+## Caja de ingreso
+cajatexto = tk.scrolledtext.ScrolledText(root, width= 80, height = 12, wrap=WORD)
+cajatexto.grid(row=2, column=0, padx=20, pady=20, rowspan=5)
 
-frameTrabajo = tk.Frame(root, borderwidth=2, relief="groove")
-frameTrabajo.pack(padx=5, pady=5, fill="both")
 
-frameAnalisis = tk.Frame(frameTrabajo, borderwidth=2, relief="ridge")
-frameAnalisis.pack(side=tk.LEFT, padx=5, pady=5, fill="both")
+#Analisis lexico
+def lexico():
+    codigo = cajatexto.get("1.0", END)
+    logs_file.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S")+ "\n")
+    logs_file.write("Entrada:"+"\n" +codigo+"\n")
+    resultadoLex.configure(state='normal')
+    resultadoLex.delete("1.0", END)
+   
+    lista_tokens = [] 
+    analizadorLexico.input(codigo)
+    lx.getTokens(analizadorLexico, lista_tokens)   
+    logs_file.write("Salida:"+"\n")
 
-frameBotonesCod = tk.Frame(frameAnalisis, borderwidth=2, relief="flat")
-frameBotonesCod.pack(padx=5, pady=5)
 
-frameCodigo = tk.Frame(frameAnalisis, borderwidth=2, relief="flat")
-frameCodigo.pack(padx=5, pady=5)
+    for i in range(0,len(lista_tokens)):
+        logs_file.write(str(lista_tokens[i])+"\n")
+        resultadoLex.insert( float(i+1), str(lista_tokens[i])+"\n")
+    
+    resultadoLex.configure(state='disabled') 
 
-frameResultado = tk.Frame(frameTrabajo, borderwidth=2, relief="ridge")
-frameResultado.pack(side=tk.RIGHT, padx=5, pady=5, fill="both")
+#Boton analisis lexico
+botonLex = tk.Button(root, text="Analizar Léxico", width = 15, height=2, bg='#FA8726', command=lexico)
+botonLex.grid(row = 3, column = 1, padx = 15)
 
-frameLexico = tk.Frame(frameResultado, borderwidth=2, relief="flat")
-frameLexico.pack(padx=5, pady=5, fill="both")
+## Caja de salida lexico
+resultadoLex = tk.scrolledtext.ScrolledText(root, width= 80, height = 12, wrap=WORD)
+resultadoLex.grid(row = 12, column=0, padx = 20 ,pady = 20, rowspan=5)
+resultadoLex.configure(state='disabled')   
 
-frameSintactico = tk.Frame(frameResultado, borderwidth=2, relief="flat")
-frameSintactico.pack(padx=5, pady=5, fill="both")
 
-def cargarArchivo():
-    limpiar()
-    codigo.insert(tk.END, "COPIANDO ARCHIVO...")
+def sintatico():
+    #obtenemos el codigo
+    codigo = cajatexto.get("1.0", END)
 
-botonArchivo = tk.Button(frameBotonesCod, text="Cargar archivo", command=cargarArchivo)
-botonArchivo.pack(side=tk.LEFT, padx=20, pady=10)
+    logs_file.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S")+ "\n")
+    logs_file.write("Entrada:"+"\n" +codigo+"\n")
+    resultadoLex.configure(state='normal')
+    resultadoLex.delete("1.0", END)
 
+    logs_file.write("Salida:"+"\n")
+    
+    analisis = str(analizadorSintactico.parse(codigo))   
+    
+    if len(sn.errores_sintaxis) > 0:
+        
+        for i in range(len(sn.errores_sintaxis)):
+            logs_file.write(str(sn.errores_sintaxis[i])+"\n")
+            resultadoLex.insert( float(i+1), str(sn.errores_sintaxis[i])+"\n")
+        sn.errores_sintaxis.clear() 
+    else:
+        # Insertamos el resultado
+       resultadoLex.insert("1.0", "Ingreso Válido")
+
+    resultadoLex.configure(state='disabled')   
+        
+botonSin = tk.Button(root, text="Analizar Sintáxis", width = 15, height=2, bg='#FA8726',command=sintatico)
+botonSin.grid(row = 4, column = 1, padx = 15)
+
+
+ 
 def limpiar():
-    codigo.delete("1.0", tk.END)
+    cajatexto.delete("1.0", END)
+    resultadoLex.configure(state='normal')
+    resultadoLex.delete("1.0", END)
 
-# Botón para obtener el texto ingresado
-botonLimpiar = tk.Button(frameBotonesCod, text="Limpiar entrada", command=limpiar)
-botonLimpiar.pack(side=tk.LEFT, padx=20, pady=10)
+def salir():
+    root.destroy()
 
-codigo = tk.Text(frameCodigo, height=60, width=60, font=("Arial", 11))
-codigo.pack(padx=20, pady=10)
+#presentacion
 
-def analizarLexico():
-    resultadoLex.config(state=tk.NORMAL)
-    resultadoLex.delete("1.0", tk.END)
-    code = codigo.get("1.0", tk.END)
-    tokens = lx.lexico(code)
-    resultadoLex.insert(tk.END, tokens)
-    resultadoLex.config(state=tk.DISABLED)
+b_limpiar = tk.Button(root, text="Limpiar", width = 10, height=2, bg='#FA8726',command=limpiar)
+b_limpiar.grid(row = 14, column = 1, padx = 15, columnspan=1)
 
-botonLexico = tk.Button(frameLexico, text="Analizar Léxico", command=analizarLexico)
-botonLexico.pack(padx=20, pady=10)
+b_salir = tk.Button(root, text="Salir", width = 10, height=2, bg='#FA8726', command=salir)
+b_salir.grid(row = 15, column = 1, padx = 15, columnspan=1)
 
-resultadoLex = tk.Text(frameLexico, height=17, width=60, font=("Arial", 11))
-resultadoLex.pack(padx=20, pady=10)
-resultadoLex.config(state=tk.DISABLED)
-
-def analizarSintaxis():
-    resultadoSin.config(state=tk.NORMAL)
-    resultadoSin.delete("1.0", tk.END)
-    code = codigo.get("1.0", tk.END)
-    resultado = sn.sintactico(code)
-    resultadoSin.insert(tk.END, code)
-    resultadoSin.config(state=tk.DISABLED)
-
-botonSintactico = tk.Button(frameSintactico, text="Analizar Sintáxis", command=analizarSintaxis)
-botonSintactico.pack(padx=20, pady=10)
-
-resultadoSin = tk.Text(frameSintactico, height=17, width=60, font=("Arial", 11))
-resultadoSin.pack(padx=20, pady=10)
-resultadoSin.config(state=tk.DISABLED)
-
+root.configure(bg='#FADF9D')
 root.mainloop()

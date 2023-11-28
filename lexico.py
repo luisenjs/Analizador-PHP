@@ -247,9 +247,34 @@ for token in lexer:
   print(token)
 '''
 
+
+'''
+esto estaba
 def lexico(codigo):
     lexer.input(codigo)
     resultado = []
     for token in lexer:
         resultado.append(token)
     return resultado
+    '''
+
+def getTokens(lexer, lista):
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break 
+        lista.append(tok)
+
+
+# Método para analizar cada línea
+def analizar(data):
+  lexer.input(data)
+  while True:
+    tok = lexer.token()
+    if not tok:
+      break
+    return tok
+  
+#obtener valores del lexico para interfaz
+def obtener_validador_lexico():
+    return lex.lex()

@@ -291,7 +291,31 @@ while True:
    if not s: continue
    result = parser.parse(s)
    if result:
-    print(result)'''
-
-def sintactico(codigo):
+    print(result)
+    
+    def sintactico(codigo):
   parser.parse(codigo)
+  
+    '''
+
+errores_sintaxis = []  
+def p_error(p):
+    if p:
+        print(f"Error de sintaxis - Token: {p.type}, Línea: {p.lineno}, Col: {p.lexpos}")
+        errores_sintaxis.append("Error de sintaxis en token {}, en la linea {}, Col: {}".format(p.type, p.lineno, p.lexpos))
+        parser.errok()
+        # logs_file.write(today.strftime("%m/%d/%Y, %H:%M:%S")+ "\t" +"Error de sintaxis - Token: "+ str(p.type) +", Línea: "+ str(p.lineno) +", Col: "+ str(p.lexpos) +"\n")
+    else:
+        errores_sintaxis.append("Error de sintaxis Fin de Linea")
+        print("Error de sintaxis Fin de Linea")
+        # logs_file.write(today.strftime("%m/%d/%Y, %H:%M:%S")+ "\t" +"Error de sintaxis Fin de Linea"+"\n")
+
+  
+def obtener_analizador_sintactico():
+    return yacc.yacc()
+
+
+def validaRegla(s):
+    result1 = parser.parse(s)
+    print(result1)
+    return result1
