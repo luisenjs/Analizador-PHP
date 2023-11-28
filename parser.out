@@ -2,6 +2,7 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    BACKSLASH
     DOS_PUNTOS
     EXPLODE
     INTERROGANTE
@@ -134,6 +135,7 @@ Terminals, with rules where they appear
 AND                  : 69
 ARRAY                : 45 47 49
 AS                   : 108 109
+BACKSLASH            : 
 BOOLEANO             : 37 83
 CADENA               : 20 22 36
 CLASS                : 3

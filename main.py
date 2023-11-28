@@ -1,6 +1,6 @@
 import tkinter as tk
 import lexico as lx
-import sintactio as sn
+import sintactico as sn
 
 root = tk.Tk()
 root.title("Analizador PHP")
