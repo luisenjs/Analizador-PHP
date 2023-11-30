@@ -1,0 +1,19 @@
+11/29/2023, 22:56:36
+Entrada:
+$pila = new SplStack();
+
+Salida:
+Error de sintaxis en token IDENTIFICADOR, en la linea 1, Col: 12
+11/29/2023, 22:56:40
+Entrada:
+$pila = new SplStack();
+
+Salida:
+LexToken(SIGNO_DOLAR,'$',2,0)
+LexToken(IDENTIFICADOR,'pila',2,1)
+LexToken(IGUAL,'=',2,6)
+LexToken(NEW,'new',2,8)
+LexToken(IDENTIFICADOR,'SplStack',2,12)
+LexToken(PARENTESIS_ABRE,'(',2,20)
+LexToken(PARENTESIS_CIERRA,')',2,21)
+LexToken(FIN_LINEA,';',2,22)
