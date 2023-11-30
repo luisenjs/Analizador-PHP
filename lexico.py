@@ -151,7 +151,7 @@ def t_BOOLEANO(t):
 
 def t_IDENTIFICADOR(t):
   r'[a-zA-Z0-9_]?[a-zA-Z_0-9]+'
-  t.type = reservadas.get(t.value.lower(),"IDENTIFICADOR")
+  t.type = reservadas.get(t.value,'IDENTIFICADOR')
   return t
 
 t_ignore = " \t"

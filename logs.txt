@@ -1,48 +1,11 @@
-11/30/2023, 14:30:52
+11/30/2023, 16:17:38
 Entrada:
-$suma = $numero1 + $numero2;  // Suma
-$resta = $numero1 - $numero2;  // Resta
-$multiplicacion = $numero1 * $numero2;  // Multiplicación
-$division = $numero1 / $numero2;  // División
-$modulo = $numero1 % $numero2;  // Módulo
-$potencia = $numero1 ** $numero2;  // Potencia
+$pila = new SplStack();
 
 Salida:
-Error de sintaxis en token SUMA, en la linea 1, Col: 17
-Error de sintaxis en token RESTA, en la linea 2, Col: 56
-Error de sintaxis en token MULTIPLICACION, en la linea 3, Col: 105
-Error de sintaxis en token DIVISION, en la linea 4, Col: 157
-Error de sintaxis en token MODULO, en la linea 5, Col: 201
-Error de sintaxis en token POTENCIA, en la linea 6, Col: 245
-11/30/2023, 14:31:29
+11/30/2023, 16:17:41
 Entrada:
-$suma = $numero1 + $numero2;
-$resta = $numero1 - $numero2;
-$multiplicacion = $numero1 * $numero2;
-$division = $numero1 / $numero2;
-$modulo = $numero1 % $numero2;
-$potencia = $numero1 ** $numero2;
+$pila = new SplStack()
 
 Salida:
-Error de sintaxis en token SUMA, en la linea 7, Col: 17
-Error de sintaxis en token RESTA, en la linea 8, Col: 47
-Error de sintaxis en token MULTIPLICACION, en la linea 9, Col: 86
-Error de sintaxis en token DIVISION, en la linea 10, Col: 119
-Error de sintaxis en token MODULO, en la linea 11, Col: 150
-Error de sintaxis en token POTENCIA, en la linea 12, Col: 183
-11/30/2023, 14:31:31
-Entrada:
-$suma = $numero1 + $numero2;
-$resta = $numero1 - $numero2;
-$multiplicacion = $numero1 * $numero2;
-$division = $numero1 / $numero2;
-$modulo = $numero1 % $numero2;
-$potencia = $numero1 ** $numero2;
-
-Salida:
-Error de sintaxis en token SUMA, en la linea 13, Col: 17
-Error de sintaxis en token RESTA, en la linea 14, Col: 47
-Error de sintaxis en token MULTIPLICACION, en la linea 15, Col: 86
-Error de sintaxis en token DIVISION, en la linea 16, Col: 119
-Error de sintaxis en token MODULO, en la linea 17, Col: 150
-Error de sintaxis en token POTENCIA, en la linea 18, Col: 183
+Error de sintaxis Fin de Linea

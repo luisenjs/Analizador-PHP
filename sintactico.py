@@ -76,12 +76,16 @@ def p_asignacion(p):
   '''asignacion : decl_variable IGUAL valor FIN_LINEA
                 | decl_variable IGUAL estructuras_datos
                 | decl_variable IGUAL poppila FIN_LINEA
+                
   '''
 
 def p_valor(p):
   '''valor : datos
+            | pila
             | NULO
             | decl_variable
+            | opAritVar
+            
   '''
 
 def p_datos(p):
@@ -190,6 +194,7 @@ def p_operad_bits(p):
 def p_operaciones_arit(p):
   '''operaciones_arit : salidas_posibles operad_arit salidas_posibles
                 | salidas_posibles operad_arit operaciones_arit
+                
   '''
 
 def p_operaciones_bits(p):
