@@ -1,370 +1,102 @@
-11/28/2023, 14:52:51
+11/30/2023, 13:42:06
 Entrada:
-$hola
+$nombre = "Maria";
+echo "¡Hola! Mi nombre es ";
+$x = "¡Hola!";
+$x = true;
+$y = false;
 
 Salida:
-LexToken(SIGNO_DOLAR,'$',1,0)
-LexToken(IDENTIFICADOR,'hola',1,1)
-11/28/2023, 14:52:54
+Error de sintaxis en token ECHO, en la linea 2, Col: 19
+Error de sintaxis en token SIGNO_DOLAR, en la linea 4, Col: 63
+11/30/2023, 13:42:22
 Entrada:
-$hola
+$nombre = "Maria";
+$x = "¡Hola!";
+$x = true;
+$y = false;
 
 Salida:
-Error de sintaxis Fin de Linea
-11/28/2023, 14:53:00
+Error de sintaxis en token SIGNO_DOLAR, en la linea 7, Col: 19
+Error de sintaxis en token SIGNO_DOLAR, en la linea 9, Col: 45
+11/30/2023, 13:42:26
 Entrada:
-$hola;
+$nombre = "Maria";
+$x = "¡Hola!";
+$x = true;
+$y = false;
 
 Salida:
-LexToken(SIGNO_DOLAR,'$',3,0)
-LexToken(IDENTIFICADOR,'hola',3,1)
-LexToken(FIN_LINEA,';',3,5)
-11/28/2023, 14:53:03
+LexToken(SIGNO_DOLAR,'$',10,0)
+LexToken(IDENTIFICADOR,'nombre',10,1)
+LexToken(IGUAL,'=',10,8)
+LexToken(CADENA,'"Maria"',10,10)
+LexToken(FIN_LINEA,';',10,17)
+LexToken(SIGNO_DOLAR,'$',11,19)
+LexToken(IDENTIFICADOR,'x',11,20)
+LexToken(IGUAL,'=',11,22)
+LexToken(CADENA,'"¡Hola!"',11,24)
+LexToken(FIN_LINEA,';',11,32)
+LexToken(SIGNO_DOLAR,'$',12,34)
+LexToken(IDENTIFICADOR,'x',12,35)
+LexToken(IGUAL,'=',12,37)
+LexToken(BOOLEANO,'true',12,39)
+LexToken(FIN_LINEA,';',12,43)
+LexToken(SIGNO_DOLAR,'$',13,45)
+LexToken(IDENTIFICADOR,'y',13,46)
+LexToken(IGUAL,'=',13,48)
+LexToken(BOOLEANO,'false',13,50)
+LexToken(FIN_LINEA,';',13,55)
+11/30/2023, 13:42:29
 Entrada:
-$hola;
+$nombre = "Maria";
+$x = "¡Hola!";
+$x = true;
+$y = false;
 
 Salida:
-Error de sintaxis en token FIN_LINEA, en la linea 4, Col: 5
-11/28/2023, 14:53:19
+LexToken(SIGNO_DOLAR,'$',14,0)
+LexToken(IDENTIFICADOR,'nombre',14,1)
+LexToken(IGUAL,'=',14,8)
+LexToken(CADENA,'"Maria"',14,10)
+LexToken(FIN_LINEA,';',14,17)
+LexToken(SIGNO_DOLAR,'$',15,19)
+LexToken(IDENTIFICADOR,'x',15,20)
+LexToken(IGUAL,'=',15,22)
+LexToken(CADENA,'"¡Hola!"',15,24)
+LexToken(FIN_LINEA,';',15,32)
+LexToken(SIGNO_DOLAR,'$',16,34)
+LexToken(IDENTIFICADOR,'x',16,35)
+LexToken(IGUAL,'=',16,37)
+LexToken(BOOLEANO,'true',16,39)
+LexToken(FIN_LINEA,';',16,43)
+LexToken(SIGNO_DOLAR,'$',17,45)
+LexToken(IDENTIFICADOR,'y',17,46)
+LexToken(IGUAL,'=',17,48)
+LexToken(BOOLEANO,'false',17,50)
+LexToken(FIN_LINEA,';',17,55)
+11/30/2023, 13:43:44
 Entrada:
-$hola;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',5,0)
-LexToken(IDENTIFICADOR,'hola',5,1)
-LexToken(FIN_LINEA,';',5,5)
-11/28/2023, 14:53:23
-Entrada:
-$hola;
-
-Salida:
-Error de sintaxis en token FIN_LINEA, en la linea 6, Col: 5
-11/28/2023, 14:53:30
-Entrada:
-$hola=10;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',7,0)
-LexToken(IDENTIFICADOR,'hola',7,1)
-LexToken(IGUAL,'=',7,5)
-LexToken(ENTERO,10,7,6)
-LexToken(FIN_LINEA,';',7,8)
-11/28/2023, 14:53:34
-Entrada:
-$hola=10;
-
-Salida:
-11/28/2023, 14:54:29
-Entrada:
-$numero1 = 10;
-$numero2 = 5;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',9,0)
-LexToken(IDENTIFICADOR,'numero1',9,1)
-LexToken(IGUAL,'=',9,9)
-LexToken(ENTERO,10,9,11)
-LexToken(FIN_LINEA,';',9,13)
-LexToken(SIGNO_DOLAR,'$',10,15)
-LexToken(IDENTIFICADOR,'numero2',10,16)
-LexToken(IGUAL,'=',10,24)
-LexToken(ENTERO,5,10,26)
-LexToken(FIN_LINEA,';',10,27)
-11/28/2023, 14:54:31
-Entrada:
-$numero1 = 10;
-$numero2 = 5;
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 12, Col: 15
-11/28/2023, 14:54:42
-Entrada:
-$numero1 = 10;
+$nombre = "Maria";
 
 
 Salida:
-11/28/2023, 14:54:51
+11/30/2023, 13:45:01
 Entrada:
-$numero1 = 10;$numero1 = 10;
+$nombre = "Maria"; $nombre = "Maria";
+echo "¡Hola! Mi nombre es ";
+$x = "¡Hola!";
+$x = true;
+$y = false;
 
+Salida:
+Error de sintaxis en token SIGNO_DOLAR, en la linea 20, Col: 19
+Error de sintaxis en token SIGNO_DOLAR, en la linea 22, Col: 67
+Error de sintaxis en token SIGNO_DOLAR, en la linea 24, Col: 93
+11/30/2023, 13:45:06
+Entrada:
+$nombre = "Maria"; $nombre = "Maria";
 
 
 Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 15, Col: 14
-11/28/2023, 14:54:54
-Entrada:
-$numero1 = 10; $numero1 = 10;
-
-
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',18,0)
-LexToken(IDENTIFICADOR,'numero1',18,1)
-LexToken(IGUAL,'=',18,9)
-LexToken(ENTERO,10,18,11)
-LexToken(FIN_LINEA,';',18,13)
-LexToken(SIGNO_DOLAR,'$',18,15)
-LexToken(IDENTIFICADOR,'numero1',18,16)
-LexToken(IGUAL,'=',18,24)
-LexToken(ENTERO,10,18,26)
-LexToken(FIN_LINEA,';',18,28)
-11/28/2023, 14:54:55
-Entrada:
-$numero1 = 10; $numero1 = 10;
-
-
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 21, Col: 15
-11/28/2023, 14:55:02
-Entrada:
-$numero1 = 10;
-$numero1 = 10;
-
-
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 25, Col: 15
-11/28/2023, 14:55:04
-Entrada:
-$numero1 = 10;
-$numero1 = 10;
-
-
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',28,0)
-LexToken(IDENTIFICADOR,'numero1',28,1)
-LexToken(IGUAL,'=',28,9)
-LexToken(ENTERO,10,28,11)
-LexToken(FIN_LINEA,';',28,13)
-LexToken(SIGNO_DOLAR,'$',29,15)
-LexToken(IDENTIFICADOR,'numero1',29,16)
-LexToken(IGUAL,'=',29,24)
-LexToken(ENTERO,10,29,26)
-LexToken(FIN_LINEA,';',29,28)
-11/28/2023, 14:55:05
-Entrada:
-$numero1 = 10;
-$numero1 = 10;
-
-
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 33, Col: 15
-11/28/2023, 14:55:33
-Entrada:
-$and = $numero3 & $numero4;  // Conjunción a nivel de bits
-$or = $numero3 | $numero4;    // Disyunción a nivel de bits
-$xor = $numero3 ^ $numero4;  // Disyunción exclusiva a nivel de bits
-$not = ~$numero3;  // Negación a nivel de bits
-$desplazamiento_izq = $numero3 << 1;  // Desplazamiento de bits a la izquierda
-$desplazamiento_der = $numero3 >> 1; 
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',36,0)
-LexToken(AND,'and',36,1)
-LexToken(IGUAL,'=',36,5)
-LexToken(SIGNO_DOLAR,'$',36,7)
-LexToken(IDENTIFICADOR,'numero3',36,8)
-LexToken(CONJUNCION,'&',36,16)
-LexToken(SIGNO_DOLAR,'$',36,18)
-LexToken(IDENTIFICADOR,'numero4',36,19)
-LexToken(FIN_LINEA,';',36,26)
-LexToken(COMENTARIO_LINEA,'// Conjunción a nivel de bits',36,29)
-LexToken(SIGNO_DOLAR,'$',37,59)
-LexToken(OR,'or',37,60)
-LexToken(IGUAL,'=',37,63)
-LexToken(SIGNO_DOLAR,'$',37,65)
-LexToken(IDENTIFICADOR,'numero3',37,66)
-LexToken(DISYUNCION,'|',37,74)
-LexToken(SIGNO_DOLAR,'$',37,76)
-LexToken(IDENTIFICADOR,'numero4',37,77)
-LexToken(FIN_LINEA,';',37,84)
-LexToken(COMENTARIO_LINEA,'// Disyunción a nivel de bits',37,89)
-LexToken(SIGNO_DOLAR,'$',38,119)
-LexToken(XOR,'xor',38,120)
-LexToken(IGUAL,'=',38,124)
-LexToken(SIGNO_DOLAR,'$',38,126)
-LexToken(IDENTIFICADOR,'numero3',38,127)
-LexToken(DISYUNCION_EXC,'^',38,135)
-LexToken(SIGNO_DOLAR,'$',38,137)
-LexToken(IDENTIFICADOR,'numero4',38,138)
-LexToken(FIN_LINEA,';',38,145)
-LexToken(COMENTARIO_LINEA,'// Disyunción exclusiva a nivel de bits',38,148)
-LexToken(SIGNO_DOLAR,'$',39,188)
-LexToken(IDENTIFICADOR,'not',39,189)
-LexToken(IGUAL,'=',39,193)
-LexToken(NEGACION,'~',39,195)
-LexToken(SIGNO_DOLAR,'$',39,196)
-LexToken(IDENTIFICADOR,'numero3',39,197)
-LexToken(FIN_LINEA,';',39,204)
-LexToken(COMENTARIO_LINEA,'// Negación a nivel de bits',39,207)
-LexToken(SIGNO_DOLAR,'$',40,235)
-LexToken(IDENTIFICADOR,'desplazamiento_izq',40,236)
-LexToken(IGUAL,'=',40,255)
-LexToken(SIGNO_DOLAR,'$',40,257)
-LexToken(IDENTIFICADOR,'numero3',40,258)
-LexToken(DESPLAZAR_BITS_IZQ,'<<',40,266)
-LexToken(ENTERO,1,40,269)
-LexToken(FIN_LINEA,';',40,270)
-LexToken(COMENTARIO_LINEA,'// Desplazamiento de bits a la izquierda',40,273)
-LexToken(SIGNO_DOLAR,'$',41,314)
-LexToken(IDENTIFICADOR,'desplazamiento_der',41,315)
-LexToken(IGUAL,'=',41,334)
-LexToken(SIGNO_DOLAR,'$',41,336)
-LexToken(IDENTIFICADOR,'numero3',41,337)
-LexToken(DESPLAZAR_BITS_DER,'>>',41,345)
-LexToken(ENTERO,1,41,348)
-LexToken(FIN_LINEA,';',41,349)
-11/28/2023, 14:55:34
-Entrada:
-$and = $numero3 & $numero4;  // Conjunción a nivel de bits
-$or = $numero3 | $numero4;    // Disyunción a nivel de bits
-$xor = $numero3 ^ $numero4;  // Disyunción exclusiva a nivel de bits
-$not = ~$numero3;  // Negación a nivel de bits
-$desplazamiento_izq = $numero3 << 1;  // Desplazamiento de bits a la izquierda
-$desplazamiento_der = $numero3 >> 1; 
-
-Salida:
-Error de sintaxis en token AND, en la linea 42, Col: 1
-Error de sintaxis en token FIN_LINEA, en la linea 42, Col: 26
-Error de sintaxis en token FIN_LINEA, en la linea 43, Col: 84
-Error de sintaxis en token FIN_LINEA, en la linea 44, Col: 145
-Error de sintaxis en token FIN_LINEA, en la linea 45, Col: 204
-Error de sintaxis en token FIN_LINEA, en la linea 46, Col: 270
-Error de sintaxis en token FIN_LINEA, en la linea 47, Col: 349
-11/28/2023, 14:55:39
-Entrada:
-$and = $numero3 & $numero4;  // Conjunción a nivel de bits
-
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',48,0)
-LexToken(AND,'and',48,1)
-LexToken(IGUAL,'=',48,5)
-LexToken(SIGNO_DOLAR,'$',48,7)
-LexToken(IDENTIFICADOR,'numero3',48,8)
-LexToken(CONJUNCION,'&',48,16)
-LexToken(SIGNO_DOLAR,'$',48,18)
-LexToken(IDENTIFICADOR,'numero4',48,19)
-LexToken(FIN_LINEA,';',48,26)
-LexToken(COMENTARIO_LINEA,'// Conjunción a nivel de bits',48,29)
-11/28/2023, 14:55:40
-Entrada:
-$and = $numero3 & $numero4;  // Conjunción a nivel de bits
-
-
-Salida:
-Error de sintaxis en token AND, en la linea 50, Col: 1
-Error de sintaxis en token FIN_LINEA, en la linea 50, Col: 26
-11/28/2023, 14:55:51
-Entrada:
-$and = $numero3 & $numero4;
-
-Salida:
-Error de sintaxis en token AND, en la linea 52, Col: 1
-Error de sintaxis en token FIN_LINEA, en la linea 52, Col: 26
-11/28/2023, 14:55:52
-Entrada:
-$and = $numero3 & $numero4;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',53,0)
-LexToken(AND,'and',53,1)
-LexToken(IGUAL,'=',53,5)
-LexToken(SIGNO_DOLAR,'$',53,7)
-LexToken(IDENTIFICADOR,'numero3',53,8)
-LexToken(CONJUNCION,'&',53,16)
-LexToken(SIGNO_DOLAR,'$',53,18)
-LexToken(IDENTIFICADOR,'numero4',53,19)
-LexToken(FIN_LINEA,';',53,26)
-11/28/2023, 14:56:01
-Entrada:
-$and = $numero3;
-
-Salida:
-Error de sintaxis en token AND, en la linea 54, Col: 1
-11/28/2023, 14:56:03
-Entrada:
-$and = $numero3;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',55,0)
-LexToken(AND,'and',55,1)
-LexToken(IGUAL,'=',55,5)
-LexToken(SIGNO_DOLAR,'$',55,7)
-LexToken(IDENTIFICADOR,'numero3',55,8)
-LexToken(FIN_LINEA,';',55,15)
-11/28/2023, 14:56:05
-Entrada:
-$and = $numero3;
-
-Salida:
-Error de sintaxis en token AND, en la linea 56, Col: 1
-11/28/2023, 14:56:15
-Entrada:
-$ss = $numero3;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',57,0)
-LexToken(IDENTIFICADOR,'ss',57,1)
-LexToken(IGUAL,'=',57,4)
-LexToken(SIGNO_DOLAR,'$',57,6)
-LexToken(IDENTIFICADOR,'numero3',57,7)
-LexToken(FIN_LINEA,';',57,14)
-11/28/2023, 14:56:16
-Entrada:
-$ss = $numero3;
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 58, Col: 6
-11/28/2023, 14:56:41
-Entrada:
-echo "HOLA\"dsd\"";
-
-Salida:
-LexToken(ECHO,'echo',59,0)
-LexToken(CADENA,'"HOLA\\"',59,5)
-LexToken(IDENTIFICADOR,'dsd',59,12)
-LexToken(BACKSLASH,'\\',59,15)
-LexToken(CADENA,'""',59,16)
-LexToken(FIN_LINEA,';',59,18)
-11/28/2023, 14:56:43
-Entrada:
-echo "HOLA\"dsd\"";
-
-Salida:
-Error de sintaxis en token IDENTIFICADOR, en la linea 60, Col: 12
-11/28/2023, 14:58:20
-Entrada:
-echo "HOLA";
-
-Salida:
-LexToken(ECHO,'echo',61,0)
-LexToken(CADENA,'"HOLA"',61,5)
-LexToken(FIN_LINEA,';',61,11)
-11/28/2023, 14:58:22
-Entrada:
-echo "HOLA";
-
-Salida:
-11/28/2023, 14:58:41
-Entrada:
-echo "HOLA";
-echo "mamaa";
-
-Salida:
-LexToken(ECHO,'echo',63,0)
-LexToken(CADENA,'"HOLA"',63,5)
-LexToken(FIN_LINEA,';',63,11)
-LexToken(ECHO,'echo',64,13)
-LexToken(CADENA,'"mamaa"',64,18)
-LexToken(FIN_LINEA,';',64,25)
-11/28/2023, 14:58:43
-Entrada:
-echo "HOLA";
-echo "mamaa";
-
-Salida:
-Error de sintaxis en token ECHO, en la linea 66, Col: 13
+Error de sintaxis en token SIGNO_DOLAR, en la linea 25, Col: 19
