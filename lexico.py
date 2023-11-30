@@ -6,6 +6,7 @@ reservadas={
     "and":"AND",
     "as" : "AS",
     "array" : "ARRAY",
+    "break" : "BREAK",
     "class": "CLASS",
     "const": "CONST",
     "elseif": "ELSEIF",
@@ -81,13 +82,12 @@ tokens = (
   "FIN_LINEA",
   "PUNTO",
   "COMA",
-  "DOS_PUNTOS",
-  "INTERROGANTE"
+  "LAMBDA"
 )+tuple(reservadas.values())
 
 t_BACKSLASH = r'\\'
 t_SIGNO_DOLAR = r'\$'
-t_CADENA = r'".*?"|".*?\n.*?"|\'.*?\'|\'.*?\n.*?\''
+t_CADENA = r'".*?"|".*?\n.*?"'
 t_NULO = r'null'
 t_IGUAL = r'='
 t_SUMA = r'\+'
@@ -123,8 +123,7 @@ t_CORCHETE_CIERRA = r'\]'
 t_FIN_LINEA = r';'
 t_PUNTO = r'\.'
 t_COMA = r'\,'
-t_DOS_PUNTOS = r'\:'
-t_INTERROGANTE = r'\?'
+t_LAMBDA = r'->'
 
 #Stefany Farias
 def t_newline(t):

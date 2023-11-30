@@ -1,102 +1,48 @@
-11/30/2023, 13:42:06
+11/30/2023, 14:30:52
 Entrada:
-$nombre = "Maria";
-echo "¡Hola! Mi nombre es ";
-$x = "¡Hola!";
-$x = true;
-$y = false;
+$suma = $numero1 + $numero2;  // Suma
+$resta = $numero1 - $numero2;  // Resta
+$multiplicacion = $numero1 * $numero2;  // Multiplicación
+$division = $numero1 / $numero2;  // División
+$modulo = $numero1 % $numero2;  // Módulo
+$potencia = $numero1 ** $numero2;  // Potencia
 
 Salida:
-Error de sintaxis en token ECHO, en la linea 2, Col: 19
-Error de sintaxis en token SIGNO_DOLAR, en la linea 4, Col: 63
-11/30/2023, 13:42:22
+Error de sintaxis en token SUMA, en la linea 1, Col: 17
+Error de sintaxis en token RESTA, en la linea 2, Col: 56
+Error de sintaxis en token MULTIPLICACION, en la linea 3, Col: 105
+Error de sintaxis en token DIVISION, en la linea 4, Col: 157
+Error de sintaxis en token MODULO, en la linea 5, Col: 201
+Error de sintaxis en token POTENCIA, en la linea 6, Col: 245
+11/30/2023, 14:31:29
 Entrada:
-$nombre = "Maria";
-$x = "¡Hola!";
-$x = true;
-$y = false;
+$suma = $numero1 + $numero2;
+$resta = $numero1 - $numero2;
+$multiplicacion = $numero1 * $numero2;
+$division = $numero1 / $numero2;
+$modulo = $numero1 % $numero2;
+$potencia = $numero1 ** $numero2;
 
 Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 7, Col: 19
-Error de sintaxis en token SIGNO_DOLAR, en la linea 9, Col: 45
-11/30/2023, 13:42:26
+Error de sintaxis en token SUMA, en la linea 7, Col: 17
+Error de sintaxis en token RESTA, en la linea 8, Col: 47
+Error de sintaxis en token MULTIPLICACION, en la linea 9, Col: 86
+Error de sintaxis en token DIVISION, en la linea 10, Col: 119
+Error de sintaxis en token MODULO, en la linea 11, Col: 150
+Error de sintaxis en token POTENCIA, en la linea 12, Col: 183
+11/30/2023, 14:31:31
 Entrada:
-$nombre = "Maria";
-$x = "¡Hola!";
-$x = true;
-$y = false;
+$suma = $numero1 + $numero2;
+$resta = $numero1 - $numero2;
+$multiplicacion = $numero1 * $numero2;
+$division = $numero1 / $numero2;
+$modulo = $numero1 % $numero2;
+$potencia = $numero1 ** $numero2;
 
 Salida:
-LexToken(SIGNO_DOLAR,'$',10,0)
-LexToken(IDENTIFICADOR,'nombre',10,1)
-LexToken(IGUAL,'=',10,8)
-LexToken(CADENA,'"Maria"',10,10)
-LexToken(FIN_LINEA,';',10,17)
-LexToken(SIGNO_DOLAR,'$',11,19)
-LexToken(IDENTIFICADOR,'x',11,20)
-LexToken(IGUAL,'=',11,22)
-LexToken(CADENA,'"¡Hola!"',11,24)
-LexToken(FIN_LINEA,';',11,32)
-LexToken(SIGNO_DOLAR,'$',12,34)
-LexToken(IDENTIFICADOR,'x',12,35)
-LexToken(IGUAL,'=',12,37)
-LexToken(BOOLEANO,'true',12,39)
-LexToken(FIN_LINEA,';',12,43)
-LexToken(SIGNO_DOLAR,'$',13,45)
-LexToken(IDENTIFICADOR,'y',13,46)
-LexToken(IGUAL,'=',13,48)
-LexToken(BOOLEANO,'false',13,50)
-LexToken(FIN_LINEA,';',13,55)
-11/30/2023, 13:42:29
-Entrada:
-$nombre = "Maria";
-$x = "¡Hola!";
-$x = true;
-$y = false;
-
-Salida:
-LexToken(SIGNO_DOLAR,'$',14,0)
-LexToken(IDENTIFICADOR,'nombre',14,1)
-LexToken(IGUAL,'=',14,8)
-LexToken(CADENA,'"Maria"',14,10)
-LexToken(FIN_LINEA,';',14,17)
-LexToken(SIGNO_DOLAR,'$',15,19)
-LexToken(IDENTIFICADOR,'x',15,20)
-LexToken(IGUAL,'=',15,22)
-LexToken(CADENA,'"¡Hola!"',15,24)
-LexToken(FIN_LINEA,';',15,32)
-LexToken(SIGNO_DOLAR,'$',16,34)
-LexToken(IDENTIFICADOR,'x',16,35)
-LexToken(IGUAL,'=',16,37)
-LexToken(BOOLEANO,'true',16,39)
-LexToken(FIN_LINEA,';',16,43)
-LexToken(SIGNO_DOLAR,'$',17,45)
-LexToken(IDENTIFICADOR,'y',17,46)
-LexToken(IGUAL,'=',17,48)
-LexToken(BOOLEANO,'false',17,50)
-LexToken(FIN_LINEA,';',17,55)
-11/30/2023, 13:43:44
-Entrada:
-$nombre = "Maria";
-
-
-Salida:
-11/30/2023, 13:45:01
-Entrada:
-$nombre = "Maria"; $nombre = "Maria";
-echo "¡Hola! Mi nombre es ";
-$x = "¡Hola!";
-$x = true;
-$y = false;
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 20, Col: 19
-Error de sintaxis en token SIGNO_DOLAR, en la linea 22, Col: 67
-Error de sintaxis en token SIGNO_DOLAR, en la linea 24, Col: 93
-11/30/2023, 13:45:06
-Entrada:
-$nombre = "Maria"; $nombre = "Maria";
-
-
-Salida:
-Error de sintaxis en token SIGNO_DOLAR, en la linea 25, Col: 19
+Error de sintaxis en token SUMA, en la linea 13, Col: 17
+Error de sintaxis en token RESTA, en la linea 14, Col: 47
+Error de sintaxis en token MULTIPLICACION, en la linea 15, Col: 86
+Error de sintaxis en token DIVISION, en la linea 16, Col: 119
+Error de sintaxis en token MODULO, en la linea 17, Col: 150
+Error de sintaxis en token POTENCIA, en la linea 18, Col: 183

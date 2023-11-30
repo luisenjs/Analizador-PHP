@@ -1,17 +1,21 @@
 import ply.yacc as yacc
 from lexico import tokens
 
+def p_variaslineas(p):
+  ''' variaslineas : programa
+                    | programa variaslineas'''
+                
+                
 def p_programa(p):
   '''programa : clase
               | instrucciones
   '''
-
+    
 def p_clase(p):
   "clase : CLASS IDENTIFICADOR LLAVE_ABRE instrucciones LLAVE_CIERRA"
 
 def p_instrucciones(p):
   '''instrucciones : asignacion
-            | valor
             | salida
             | ingreso
             | estructuras_datos
@@ -19,8 +23,9 @@ def p_instrucciones(p):
             | funcion
             | COMENTARIO_LINEA
             | COMENTARIO_BLOQUE
-            | operaciones_arit
-            | operaciones_bits
+            | operaciones FIN_LINEA
+            | declaracion_s FIN_LINEA
+            | BREAK FIN_LINEA
   '''
 
 # Stefany Farias
@@ -68,11 +73,15 @@ def p_decl_variable(p):
                     | variable_tipo SIGNO_DOLAR IDENTIFICADOR'''
 
 def p_asignacion(p):
-  '''asignacion : decl_variable IGUAL valor FIN_LINEA'''
+  '''asignacion : decl_variable IGUAL valor FIN_LINEA
+                | decl_variable IGUAL estructuras_datos
+                | decl_variable IGUAL poppila FIN_LINEA
+  '''
 
 def p_valor(p):
   '''valor : datos
             | NULO
+            | decl_variable
   '''
 
 def p_datos(p):
@@ -85,11 +94,15 @@ def p_datos(p):
 # Stefany Farias
 # 3.2 declaración de funciones
 def p_funcion(p):
-  '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE PARENTESIS_CIERRA LLAVE_ABRE instrucciones LLAVE_CIERRA
+  '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA
   '''
 
 def p_funcion_parametros(p):
-  '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE parametros PARENTESIS_CIERRA LLAVE_ABRE instrucciones LLAVE_CIERRA'''
+  '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE parametros PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA'''
+
+def p_funcionenuso(p):
+  '''funcionuso : IDENTIFICADOR PARENTESIS_ABRE parametros PARENTESIS_CIERRA
+  '''
 
 def p_parametros(p):
   '''parametros : SIGNO_DOLAR IDENTIFICADOR
@@ -104,6 +117,15 @@ def p_estructuras_datos(p):
   '''
 def p_pila(p):
   '''pila :  NEW STACK PARENTESIS_ABRE PARENTESIS_CIERRA'''
+
+def p_pop(p):
+  '''poppila : decl_variable LAMBDA POP PARENTESIS_ABRE PARENTESIS_CIERRA
+  '''
+
+def p_push(p):
+  '''pushpila : decl_variable LAMBDA PUSH PARENTESIS_ABRE valor PARENTESIS_CIERRA
+            | decl_variable LAMBDA PUSH PARENTESIS_ABRE operaciones_arit PARENTESIS_CIERRA
+  '''
 
 def p_arreglo_vacio(p):
   '''arreglo : ARRAY PARENTESIS_ABRE PARENTESIS_CIERRA
@@ -184,6 +206,25 @@ def p_operaciones_logica(p):
                 | decl_variable operad_logico FLOTANTE
   '''
 
+def p_operaciones(p):
+  '''operaciones : operaciones_logicas
+                  | operaciones_arit
+                  | operaciones_bits
+                  | pushpila
+                  | poppila
+  '''
+  
+def p_paraCalculos(p):
+  '''paraCalculos : ENTERO
+                  | FLOTANTE
+                  | decl_variable'''
+
+def p_combinarOp(p):
+  '''combinarOp : operad_arit paraCalculos
+                | operad_arit paraCalculos combinarOp'''
+
+def p_opAritmeticaEnVar(p):
+  "opAritVar : paraCalculos combinarOp"
   
 #Stefany Farias
 #Condicionales simples y con conectores
@@ -192,15 +233,12 @@ def p_estructuras_control(p):
                           | foreach
                           | if_else
                           | while
-                          
   '''
 
 #Bloques de código permitidos dentro de funciones o bucles
 def p_bloque(p):
-  ''' bloque : asignacion
-              | salida
+  ''' bloque : instrucciones
               | retorno
-              | estructuras_control
   '''
 
 #Stefany Farias
@@ -236,7 +274,9 @@ def p_crecimiento(p):
                 | DECREMENTO'''
 
 def p_retorno(p):
-  ''' retorno : RETURN salidas_posibles FIN_LINEA'''
+  ''' retorno : RETURN salidas_posibles FIN_LINEA
+              | RETURN operaciones FIN_LINEA
+  '''
 
 # Luis Jara
 # Estructura de control foreach
@@ -274,11 +314,11 @@ def p_if_else_fin(p):
   "if_else_fin : ELSE LLAVE_ABRE bloque LLAVE_CIERRA"
 
 
-def p_error(p):
+'''def p_error(p):
   if p:
     print("Error sintáctico, no se esperaba '%s'" % p.value)
   else:
-    print("Error sintáctico, sentencia incompleta")
+    print("Error sintáctico, sentencia incompleta")'''
 
 parser = yacc.yacc()
 

@@ -5,12 +5,12 @@ echo "HOLA\"dsd\"";
 $numero1 = 10;
 $numero2 = 5;
 
-$suma = $numero1 + $numero2;  // Suma
-$resta = $numero1 - $numero2;  // Resta
-$multiplicacion = $numero1 * $numero2;  // Multiplicación
-$division = $numero1 / $numero2;  // División
-$modulo = $numero1 % $numero2;  // Módulo
-$potencia = $numero1 ** $numero2;  // Potencia
+$suma = $numero1 + $numero2;
+$resta = $numero1 - $numero2;
+$multiplicacion = $numero1 * $numero2;
+$division = $numero1 / $numero2;
+$modulo = $numero1 % $numero2;
+$potencia = $numero1 ** $numero2;
 
 echo "Suma: $suma\n";
 echo "Resta: $resta\n";
