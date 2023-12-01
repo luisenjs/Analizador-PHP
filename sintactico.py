@@ -12,7 +12,7 @@ def p_programa(p):
   '''
     
 def p_clase(p):
-  "clase : CLASS IDENTIFICADOR LLAVE_ABRE instrucciones LLAVE_CIERRA"
+  "clase : CLASS IDENTIFICADOR LLAVE_ABRE sentenciasAnidadas LLAVE_CIERRA"
 
 def p_instrucciones(p):
   '''instrucciones : asignacion
@@ -20,7 +20,7 @@ def p_instrucciones(p):
             | ingreso
             | estructuras_datos
             | estructuras_control
-            | funcion
+            | funcionglobal
             | COMENTARIO_LINEA
             | COMENTARIO_BLOQUE
             | operaciones FIN_LINEA
@@ -75,8 +75,9 @@ def p_decl_variable(p):
 def p_asignacion(p):
   '''asignacion : decl_variable IGUAL valor FIN_LINEA
                 | decl_variable IGUAL estructuras_datos
-                | decl_variable IGUAL poppila FIN_LINEA
-                
+                | decl_variable IGUAL explode FIN_LINEA
+                | decl_variable IGUAL funcionuso FIN_LINEA
+                | decl_variable IGUAL operaciones FIN_LINEA
   '''
 
 def p_valor(p):
@@ -98,14 +99,19 @@ def p_datos(p):
 # Stefany Farias
 # 3.2 declaración de funciones
 def p_funcion(p):
-  '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA
-  '''
+  '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA'''
 
 def p_funcion_parametros(p):
   '''funcion : FUNCTION IDENTIFICADOR PARENTESIS_ABRE parametros PARENTESIS_CIERRA LLAVE_ABRE bloque LLAVE_CIERRA'''
 
+def p_funcion_global(p):
+    '''funcionglobal : funcion
+                    | variable_tipo funcion
+    '''
+
 def p_funcionenuso(p):
   '''funcionuso : IDENTIFICADOR PARENTESIS_ABRE parametros PARENTESIS_CIERRA
+                | IDENTIFICADOR PARENTESIS_ABRE elementos PARENTESIS_CIERRA
   '''
 
 def p_parametros(p):
@@ -130,6 +136,11 @@ def p_push(p):
   '''pushpila : decl_variable LAMBDA PUSH PARENTESIS_ABRE valor PARENTESIS_CIERRA
             | decl_variable LAMBDA PUSH PARENTESIS_ABRE operaciones_arit PARENTESIS_CIERRA
   '''
+
+def p_explode(p):
+    '''explode : EXPLODE PARENTESIS_ABRE CADENA COMA salidas_posibles COMA ENTERO PARENTESIS_CIERRA
+                | EXPLODE PARENTESIS_ABRE CADENA COMA salidas_posibles PARENTESIS_CIERRA
+    '''
 
 def p_arreglo_vacio(p):
   '''arreglo : ARRAY PARENTESIS_ABRE PARENTESIS_CIERRA
@@ -177,13 +188,15 @@ def p_operad_logicos(p):
                 | AND
                 | OR
                 | XOR
+                | CONJUNCION
+                | DISYUNCION
   '''
 
 #Luis Jara
 #Operadores con bits
 def p_operad_bits(p):
-  '''operand_bits : CONJUNCION
-                  | DISYUNCION
+  '''operand_bits : CONJUNCIONBITS
+                  | DISYUNCIONBITS
                   | DISYUNCION_EXC
                   | DESPLAZAR_BITS_IZQ
                   | DESPLAZAR_BITS_DER
@@ -209,6 +222,12 @@ def p_operaciones_logica(p):
                 | decl_variable operad_logico decl_variable
                 | decl_variable operad_logico ENTERO
                 | decl_variable operad_logico FLOTANTE
+                | operaciones_arit operad_logico ENTERO
+                | operaciones_arit operad_logico FLOTANTE
+                | funcionuso
+                | funcionuso operad_logico funcionuso
+                | funcionuso operad_logico operaciones_logicas
+                | operaciones_logicas operad_logico funcionuso
   '''
 
 def p_operaciones(p):
@@ -242,8 +261,9 @@ def p_estructuras_control(p):
 
 #Bloques de código permitidos dentro de funciones o bucles
 def p_bloque(p):
-  ''' bloque : instrucciones
-              | retorno
+  ''' bloque : sentenciasAnidadas retorno
+            | sentenciasAnidadas
+            | retorno
   '''
 
 #Stefany Farias
@@ -264,10 +284,18 @@ def p_valorC(p):
               | mayor'''
 
 def p_menor(p):
-  '''menor : MENOR_IGUAL ENTERO FIN_LINEA'''
+  '''menor : MENOR_IGUAL ENTERO FIN_LINEA
+            | MENOR_IGUAL decl_variable FIN_LINEA
+            | MENOR ENTERO FIN_LINEA
+            | MENOR decl_variable FIN_LINEA
+  '''
 
 def p_mayor(p):
-  '''mayor : MAYOR_IGUAL ENTERO FIN_LINEA'''
+  '''mayor : MAYOR_IGUAL ENTERO FIN_LINEA
+            | MENOR_IGUAL decl_variable FIN_LINEA
+            | MAYOR ENTERO FIN_LINEA
+            | MAYOR decl_variable FIN_LINEA
+  '''
 
 def p_declaracionsimple(p):
    '''declaracion_s : decl_variable crecimiento

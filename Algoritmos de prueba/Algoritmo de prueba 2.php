@@ -1,29 +1,14 @@
 <?php
 function evaluarExpresionPosfija($expresion) {
 $pila = new SplStack();
-$tokens = explode(' ', $expresion);
+$tokens = explode(" ", $expresion);
 
 foreach ($tokens as $token) {
-    if (is_numeric($token)) {
+    if (isnumeric($token)) {
         $pila->push($token);
     } else {
         $operando2 = $pila->pop();
         $operando1 = $pila->pop();
-
-        switch ($token) {
-            case '+':
-                $pila->push($operando1 + $operando2);
-                break;
-            case '-':
-                $pila->push($operando1 - $operando2);
-                break;
-            case '*':
-                $pila->push($operando1 * $operando2);
-                break;
-            case '/':
-                $pila->push($operando1 / $operando2);
-                break;
-        }
     }
 }
 

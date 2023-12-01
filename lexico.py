@@ -55,7 +55,9 @@ tokens = (
   "DIVISION",
   "MODULO",
   "POTENCIA",
+  "CONJUNCIONBITS",
   "CONJUNCION",
+  "DISYUNCIONBITS",
   "DISYUNCION",
   "DISYUNCION_EXC",
   "NEGACION",
@@ -96,8 +98,10 @@ t_MULTIPLICACION = r'\*'
 t_DIVISION = r'/'
 t_MODULO = r'%'
 t_POTENCIA = r'\*\*'
-t_CONJUNCION = r'&'
-t_DISYUNCION = r'\|'
+t_CONJUNCIONBITS = r'&'
+t_CONJUNCION = r'&&'
+t_DISYUNCIONBITS = r'\|'
+t_DISYUNCION = r'\|\|'
 t_DISYUNCION_EXC = r'\^'
 t_NEGACION = r'~'
 t_DESPLAZAR_BITS_IZQ = r'<<'

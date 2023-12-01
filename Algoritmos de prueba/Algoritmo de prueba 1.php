@@ -1,24 +1,23 @@
 <?php
 $a = 7;
-if ($a > 0)
-
+if ($a > 0){
 for ($i = 0; $i < $a; $i++) {
   echo "Hi";
 }
-
+}else{
 echo "¡Hola, soy un script de PHP!";
+}
 
 /*
-Este bloque de comentarios 
+Este bloque de comentarios
 abarca multiples
 lineas
 */
 
 $nombre = "Maria";
-echo "¡Hola! Mi nombre es " . $nombre ;
+echo $nombre ;
 
 $x = "¡Hola!";
-$y = '¡Hola!';
 
 $x = true; //Verdadero
 $y = false; //Falso

@@ -1,9 +1,9 @@
 <?php
 class MiClase {
   public $publico = 42;
-  private $privado = 'secreto';
+  private $privado = "secreto";
 
-  function __construct() {
+  function construct() {
       echo "Constructor de la clase.";
   }
 
@@ -22,24 +22,12 @@ for ($i = 1; $i <= 5; $i++) {
   if ($i % 2 == 0) {
       $stack->push($i);
   } else {
-      //$stack->pop();
+      $stack->pop();
   }
 }
 
-echo "Elemento superior de la pila: " . $stack->top();
-
-$clase = new MiClase();
-$clase->funcionPublica();
-echo $clase->publico;
-
-if (is_callable([$clase, 'funcionPrivada'])) {
-  echo "La función privada es llamable.";
-} else {
-  echo "La función privada no es llamable.";
-}
-
-$array = [1, 2, 3];
-foreach ($array as $valor) {
+$arreglo = [1, 2, 3];
+foreach ($arreglo as $valor) {
   echo "Valor: $valor";
 }
 
@@ -49,14 +37,18 @@ echo $variable;
 $constante = 100;
 echo "Constante: $constante";
 
-$or = true;
-$and = false;
-if ($or || $and) {
+$o = true;
+$y = false;
+if ($o || $y) {
   echo "Condición OR verdadera.";
+}else{
+  echo "Condición OP falsa.";
 }
 
 if (isset($variable) && $constante == 100) {
   echo "Ambas condiciones son verdaderas.";
+}else{
+  echo "Caso contrario.";
 }
 
 function myFunction($param) {
