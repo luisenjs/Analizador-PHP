@@ -26,6 +26,8 @@ def p_instrucciones(p):
             | operaciones FIN_LINEA
             | declaracion_s FIN_LINEA
             | BREAK FIN_LINEA
+            | concadenacion1
+            | concatenacion2
   '''
 
 # Stefany Farias
@@ -347,29 +349,24 @@ def p_if_else_fin(p):
   "if_else_fin : ELSE LLAVE_ABRE bloque LLAVE_CIERRA"
 
 
-'''def p_error(p):
-  if p:
-    print("Error sintáctico, no se esperaba '%s'" % p.value)
-  else:
-    print("Error sintáctico, sentencia incompleta")'''
+#Reglas semánticas
+
+#Stefany Farias
+#Concadenación de variables 
+#ejemplo echo "hola". $nombre;
+
+def p_concadenacion(p):
+  "concadenacion1 : ECHO salidas_posibles PUNTO decl_variable FIN_LINEA"
+
+#Luis Jara
+# Ejemplo: $saludo = "hola"
+# $saludo.= 2  ---> "hola2"
+def p_concatenacion(p):
+  "concatenacion2 : decl_variable PUNTO IGUAL  datos FIN_LINEA"
+
+
 
 parser = yacc.yacc()
-
-'''
-while True:
-   try:
-       s = input('code > ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   if result:
-    print(result)
-    
-    def sintactico(codigo):
-  parser.parse(codigo)
-  
-    '''
 
 errores_sintaxis = []  
 def p_error(p):
@@ -379,7 +376,7 @@ def p_error(p):
         parser.errok()
         # logs_file.write(today.strftime("%m/%d/%Y, %H:%M:%S")+ "\t" +"Error de sintaxis - Token: "+ str(p.type) +", Línea: "+ str(p.lineno) +", Col: "+ str(p.lexpos) +"\n")
     else:
-        errores_sintaxis.append("Error de sintaxis Fin de Linea")
+        errores_sintaxis.append("Error, sentencia incompleta")
         print("Error de sintaxis Fin de Linea")
         # logs_file.write(today.strftime("%m/%d/%Y, %H:%M:%S")+ "\t" +"Error de sintaxis Fin de Linea"+"\n")
 

@@ -98,22 +98,13 @@ botonSin = tk.Button(root, text="Analizar Sintáxis", width = 15, height=2, bg='
 botonSin.grid(row = 4, column = 1, padx = 15)
 
 
- 
 def limpiar():
     cajatexto.delete("1.0", END)
     resultadoLex.configure(state='normal')
     resultadoLex.delete("1.0", END)
 
-def salir():
-    root.destroy()
-
-#presentacion
-
 b_limpiar = tk.Button(root, text="Limpiar", width = 10, height=2, bg='#FA8726',command=limpiar)
 b_limpiar.grid(row = 14, column = 1, padx = 15, columnspan=1)
-
-b_salir = tk.Button(root, text="Salir", width = 10, height=2, bg='#FA8726', command=salir)
-b_salir.grid(row = 15, column = 1, padx = 15, columnspan=1)
 
 root.configure(bg='#FADF9D')
 root.mainloop()
